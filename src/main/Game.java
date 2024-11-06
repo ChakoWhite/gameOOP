@@ -3,15 +3,13 @@ package main;
 import javax.swing.JFrame;
 
 import helpz.LoadSave;
-import inputs.KeyboardListener;
-import inputs.MyMouseListener;
 import managers.TileManager;
 import scenes.Editing;
 import scenes.GameOver;
-import scenes.GameWin;
 import scenes.Menu;
 import scenes.Playing;
 import scenes.Settings;
+import scenes.GameWin;
 
 public class Game extends JFrame implements Runnable {
 
@@ -34,8 +32,10 @@ public class Game extends JFrame implements Runnable {
 
 	public Game() {
 
-		initClasses();
+		LoadSave.CreateFolder();
+
 		createDefaultLevel();
+		initClasses();
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -52,7 +52,7 @@ public class Game extends JFrame implements Runnable {
 		for (int i = 0; i < arr.length; i++)
 			arr[i] = 0;
 
-		LoadSave.CreateLevel("new_level", arr);
+		LoadSave.CreateLevel(arr);
 
 	}
 
@@ -66,7 +66,6 @@ public class Game extends JFrame implements Runnable {
 		editing = new Editing(this);
 		gameOver = new GameOver(this);
 		gameWin = new GameWin(this);
-
 
 	}
 
@@ -134,12 +133,12 @@ public class Game extends JFrame implements Runnable {
 				updates++;
 			}
 
-			if (System.currentTimeMillis() - lastTimeCheck >= 1000) {
-				System.out.println("FPS: " + frames + " | UPS: " + updates);
-				frames = 0;
-				updates = 0;
-				lastTimeCheck = System.currentTimeMillis();
-			}
+//			if (System.currentTimeMillis() - lastTimeCheck >= 1000) {
+//				System.out.println("FPS: " + frames + " | UPS: " + updates);
+//				frames = 0;
+//				updates = 0;
+//				lastTimeCheck = System.currentTimeMillis();
+//			}
 
 		}
 
@@ -169,7 +168,7 @@ public class Game extends JFrame implements Runnable {
 	public GameOver getGameOver() {
 		return gameOver;
 	}
-	
+
 	public GameWin getGameWin() {
 		return gameWin;
 	}
