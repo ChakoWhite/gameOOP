@@ -29,8 +29,8 @@ public class Editing extends GameScene implements SceneMethods {
 	}
 
 	private void loadDefaultLevel() {
-		lvl = LoadSave.GetLevelData();
-		ArrayList<PathPoint> points = LoadSave.GetLevelPathPoints();
+		lvl = LoadSave.GetLevelData("new_level");
+		ArrayList<PathPoint> points = LoadSave.GetLevelPathPoints("new_level");
 		start = points.get(0);
 		end = points.get(1);
 	}
@@ -78,7 +78,7 @@ public class Editing extends GameScene implements SceneMethods {
 
 	public void saveLevel() {
 
-		LoadSave.SaveLevel(lvl, start, end);
+		LoadSave.SaveLevel("new_level", lvl, start, end);
 		game.getPlaying().setLevel(lvl);
 
 	}

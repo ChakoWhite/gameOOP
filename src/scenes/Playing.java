@@ -45,8 +45,8 @@ public class Playing extends GameScene implements SceneMethods {
 	}
 
 	private void loadDefaultLevel() {
-		lvl = LoadSave.GetLevelData();
-		ArrayList<PathPoint> points = LoadSave.GetLevelPathPoints();
+		lvl = LoadSave.GetLevelData("new_level");
+		ArrayList<PathPoint> points = LoadSave.GetLevelPathPoints("new_level");
 		start = points.get(0);
 		end = points.get(1);
 	}
@@ -76,7 +76,7 @@ public class Playing extends GameScene implements SceneMethods {
 	            } else {
 	                // Check if all waves are cleared
 	                if (isAllWavesCleared()) {
-	                    SetGameState(GAME_WIN);
+	                	SetGameState(GAME_WIN);
 	                    return; // Exit update loop when game is won
 	                }
 	            }
@@ -92,10 +92,11 @@ public class Playing extends GameScene implements SceneMethods {
 	        projManager.update();
 	    }
 	}
-
+	
 	private boolean isAllWavesCleared() {
 	    return !isThereMoreWaves() && isAllEnemiesDead();
 	}
+
 
 	private boolean isWaveTimerOver() {
 
